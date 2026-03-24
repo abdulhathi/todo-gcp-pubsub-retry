@@ -1,0 +1,38 @@
+<div class="container">
+  <h2>Todo Manager</h2>
+
+  <div class="actions">
+    <button (click)="onSave()">Save All</button>
+    <button class="submit" (click)="onSubmit()">Submit All</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (todo of todos; track todo.id) {
+        <tr>
+          <td>
+            <input [(ngModel)]="todo.title" (input)="todo.edited = true" />
+          </td>
+
+          <td>
+            <span [ngClass]="todo.status.toLowerCase()">
+              {{ todo.status }}
+            </span>
+          </td>
+
+          <td>
+            <button (click)="reset(todo)">Reset</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

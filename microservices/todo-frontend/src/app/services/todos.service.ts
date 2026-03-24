@@ -1,21 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Todo } from '../models/todo';
 
-interface Todo {
-  id: number;
-  title: string;
-  status: string;
+export interface TodoResponse {
+  status: string
+  todos: Todo[]
 }
 
 @Injectable({
   providedIn: 'root',
 })
-export class Todos {
+export class TodoService {
   baseUrl: string = 'http://localhost:8000';
 
   constructor(private http: HttpClient) {}
 
   getTodos() {
-    return this.http.get<Todo>(`${this.baseUrl}\api\todos`);
+    return this.http.get<TodoResponse>(`${this.baseUrl}/api/todos`);
   }
 }
