@@ -4,9 +4,8 @@ db = firestore.Client(project="todo-firestore-fastapi")
 
 
 def get_bulk_todos():
-  ref = db.collection("todos")
-  todos = ref.get()
-  return todos
+  docs = db.collection("todos").stream()
+  return [doc.to_dict() for doc in docs]
 
 
 def save_bulk_todos(todos: list):
