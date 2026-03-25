@@ -1,11 +1,18 @@
-<div class="container">
-  <h2>Todo Manager</h2>
+<div class="container flex flex-col gap-2 p-4">
+  <h2 class="text-3xl">Todo Manager</h2>
 
   <div class="actions">
-    <button (click)="onSave()">Save All</button>
+    <button class="saveall" (click)="onSave()">Save All</button>
     <button class="submit" (click)="onSubmit()">Submit All</button>
+    <button class="addTodo" (click)="showAddTodo = true">Add Todo</button>
   </div>
 
+  @if (showAddTodo === true) {
+    <div class="add-todo">
+      <input type="text" [(ngModel)]="newTodoTitle" placeholder="Enter new todo" />
+      <button (click)="addTodo()">Add</button>
+    </div>
+  }
   <table>
     <thead>
       <tr>
@@ -29,7 +36,14 @@
           </td>
 
           <td>
-            <button (click)="reset(todo)">Reset</button>
+            <div class="flex gap-2">
+              <button (click)="reset(todo)" mat-icon-button>
+                <mat-icon>close</mat-icon>
+              </button>
+              <button mat-icon-button (click)="deleteTodo(todo.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
           </td>
         </tr>
       }
