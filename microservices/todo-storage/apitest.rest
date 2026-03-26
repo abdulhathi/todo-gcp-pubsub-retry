@@ -1,0 +1,9 @@
+
+### 🔐 Login to get JWT token
+POST http://localhost:8000/auth/Login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
